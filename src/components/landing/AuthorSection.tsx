@@ -34,7 +34,7 @@ const AuthorSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative flex justify-center lg:justify-end order-2 lg:order-1 pb-10"
+            className="relative flex justify-center lg:justify-end order-2 lg:order-1 pb-12"
           >
             <Tilt
               tiltMaxAngleX={isMobile ? 0 : 10}
@@ -71,7 +71,7 @@ const AuthorSection = () => {
                   alt="Vera Dias"
                   className="relative w-72 h-72 md:w-80 md:h-80 object-cover rounded-full border-4 border-gold/30"
                 />
-                {/* Experience badge */}
+                {/* Experience badge - positioned below photo */}
                 <motion.div
                   initial={{ scale: 0, y: 20 }}
                   whileInView={{ scale: 1, y: 0 }}
@@ -82,7 +82,7 @@ const AuthorSection = () => {
                     stiffness: 200,
                     damping: 15,
                   }}
-                  className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-gold to-gold-dark text-accent-foreground px-6 py-2 rounded-full font-semibold shadow-lg whitespace-nowrap"
+                  className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-gold to-gold-dark text-accent-foreground px-4 md:px-6 py-2 rounded-full font-semibold shadow-lg whitespace-nowrap text-sm md:text-base"
                 >
                   +18 anos de experiência
                 </motion.div>
