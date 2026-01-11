@@ -5,12 +5,14 @@ interface SpotlightCardProps {
   children: ReactNode;
   className?: string;
   spotlightColor?: string;
+  disabled?: boolean;
 }
 
 const SpotlightCard = ({
   children,
   className = "",
   spotlightColor = "rgba(212, 175, 55, 0.35)",
+  disabled = false,
 }: SpotlightCardProps) => {
   const divRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState(false);
@@ -40,31 +42,35 @@ const SpotlightCard = ({
   return (
     <motion.div
       ref={divRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={disabled ? undefined : handleMouseMove}
+      onMouseEnter={disabled ? undefined : handleMouseEnter}
+      onMouseLeave={disabled ? undefined : handleMouseLeave}
       className={`relative overflow-hidden ${className}`}
     >
       {/* Spotlight effect */}
-      <div
-        className="pointer-events-none absolute inset-0 transition-opacity duration-300 z-10"
-        style={{
-          opacity,
-          background: `radial-gradient(180px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 50%)`,
-        }}
-      />
+      {!disabled && (
+        <div
+          className="pointer-events-none absolute inset-0 transition-opacity duration-300 z-10"
+          style={{
+            opacity,
+            background: `radial-gradient(180px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 50%)`,
+          }}
+        />
+      )}
       {/* Border glow effect */}
-      <div
-        className="pointer-events-none absolute inset-0 transition-opacity duration-300 rounded-2xl z-10"
-        style={{
-          opacity: isFocused ? 1 : 0,
-          background: `radial-gradient(150px circle at ${position.x}px ${position.y}px, rgba(212, 175, 55, 0.8), transparent 50%)`,
-          mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-          maskComposite: "xor",
-          WebkitMaskComposite: "xor",
-          padding: "2px",
-        }}
-      />
+      {!disabled && (
+        <div
+          className="pointer-events-none absolute inset-0 transition-opacity duration-300 rounded-2xl z-10"
+          style={{
+            opacity: isFocused ? 1 : 0,
+            background: `radial-gradient(150px circle at ${position.x}px ${position.y}px, rgba(212, 175, 55, 0.8), transparent 50%)`,
+            mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+            maskComposite: "xor",
+            WebkitMaskComposite: "xor",
+            padding: "2px",
+          }}
+        />
+      )}
       {children}
     </motion.div>
   );

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import ebookCover from "@/assets/ebook-cover.jpg";
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const features = [
   { title: "E-book Completo", desc: "Método de 18 anos resumido" },
@@ -12,6 +13,8 @@ const features = [
 ];
 
 const CtaSection = () => {
+  const isMobile = useIsMobile();
+
   return (
     <section className="py-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-card to-background" />
@@ -56,12 +59,12 @@ const CtaSection = () => {
               className="flex justify-center"
             >
               <Tilt
-                tiltMaxAngleX={15}
-                tiltMaxAngleY={15}
+                tiltMaxAngleX={isMobile ? 0 : 15}
+                tiltMaxAngleY={isMobile ? 0 : 15}
                 perspective={1000}
-                scale={1.05}
+                scale={isMobile ? 1 : 1.05}
                 transitionSpeed={2000}
-                glareEnable={true}
+                glareEnable={!isMobile}
                 glareMaxOpacity={0.3}
                 glareColor="#D4AF37"
                 glarePosition="all"

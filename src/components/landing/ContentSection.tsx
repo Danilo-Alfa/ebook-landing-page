@@ -2,6 +2,7 @@ import { CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import SpotlightCard from "@/components/ui/spotlight-card";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const modules = [
   {
@@ -66,6 +67,8 @@ const itemVariants = {
 };
 
 const ContentSection = () => {
+  const isMobile = useIsMobile();
+
   return (
     <section id="conteudo" className="py-20 relative overflow-hidden">
       {/* Animated background */}
@@ -125,14 +128,14 @@ const ContentSection = () => {
           {modules.map((module, index) => (
             <motion.div key={index} variants={itemVariants}>
               <Tilt
-                tiltMaxAngleX={8}
-                tiltMaxAngleY={8}
+                tiltMaxAngleX={isMobile ? 0 : 8}
+                tiltMaxAngleY={isMobile ? 0 : 8}
                 perspective={1000}
-                scale={1.02}
+                scale={isMobile ? 1 : 1.02}
                 transitionSpeed={1500}
                 className="h-full"
               >
-                <SpotlightCard className="h-full rounded-2xl" spotlightColor="rgba(37, 211, 102, 0.35)">
+                <SpotlightCard className="h-full rounded-2xl" spotlightColor="rgba(37, 211, 102, 0.35)" disabled={isMobile}>
                   <div className="group h-full p-6 rounded-2xl bg-card/80 backdrop-blur-sm border border-border/50 hover:border-whatsapp/50 transition-all duration-500 hover:shadow-xl hover:shadow-whatsapp/10 relative overflow-hidden">
                     {/* Number decoration */}
                     <div className="absolute -top-4 -right-4 text-8xl font-bold text-whatsapp/5 select-none">

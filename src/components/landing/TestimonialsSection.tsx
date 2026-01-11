@@ -2,6 +2,7 @@ import { Star } from "lucide-react";
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import SpotlightCard from "@/components/ui/spotlight-card";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const testimonials = [
   {
@@ -48,6 +49,8 @@ const itemVariants = {
 };
 
 const TestimonialsSection = () => {
+  const isMobile = useIsMobile();
+
   return (
     <section className="py-20 relative overflow-hidden">
       <motion.div
@@ -105,14 +108,14 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial, index) => (
             <motion.div key={index} variants={itemVariants}>
               <Tilt
-                tiltMaxAngleX={10}
-                tiltMaxAngleY={10}
+                tiltMaxAngleX={isMobile ? 0 : 10}
+                tiltMaxAngleY={isMobile ? 0 : 10}
                 perspective={1000}
-                scale={1.02}
+                scale={isMobile ? 1 : 1.02}
                 transitionSpeed={1500}
                 className="h-full"
               >
-                <SpotlightCard className="h-full rounded-2xl">
+                <SpotlightCard className="h-full rounded-2xl" disabled={isMobile}>
                   <div className="group h-full p-6 rounded-2xl bg-card/80 backdrop-blur-sm border border-border/50 hover:border-gold/50 transition-all duration-500 hover:shadow-xl hover:shadow-gold/10 relative overflow-hidden">
                     {/* Quote decoration */}
                     <div className="absolute -top-2 -left-2 text-6xl text-gold/10 font-serif select-none">

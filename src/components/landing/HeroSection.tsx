@@ -2,8 +2,11 @@ import { Button } from "@/components/ui/button";
 import ebookCover from "@/assets/ebook-cover.jpg";
 import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const HeroSection = () => {
+  const isMobile = useIsMobile();
+
   return (
     <section className="relative min-h-screen flex items-center py-20 overflow-hidden">
       {/* Animated background decorations */}
@@ -120,21 +123,21 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* Ebook mockup with 3D Tilt */}
+          {/* Ebook mockup with 3D Tilt (disabled on mobile) */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: isMobile ? 0 : 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
             className="relative flex justify-center"
           >
             <Tilt
-              tiltMaxAngleX={15}
-              tiltMaxAngleY={15}
+              tiltMaxAngleX={isMobile ? 0 : 15}
+              tiltMaxAngleY={isMobile ? 0 : 15}
               perspective={1000}
-              scale={1.02}
+              scale={isMobile ? 1 : 1.02}
               transitionSpeed={2000}
-              gyroscope={true}
-              glareEnable={true}
+              gyroscope={false}
+              glareEnable={!isMobile}
               glareMaxOpacity={0.3}
               glareColor="#D4AF37"
               glarePosition="all"
@@ -143,42 +146,16 @@ const HeroSection = () => {
             >
               <div className="relative">
                 {/* Animated glow effect */}
-                <motion.div
-                  animate={{
-                    opacity: [0.2, 0.4, 0.2],
-                    scale: [1, 1.05, 1],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute -inset-4 bg-gradient-to-r from-whatsapp/30 to-gold/30 rounded-2xl blur-2xl"
-                />
+                <div className="absolute -inset-4 bg-gradient-to-r from-whatsapp/30 to-gold/30 rounded-2xl blur-2xl" />
                 <img
                   src={ebookCover}
                   alt="E-book Guia Completo de Tratamentos Capilares e Estéticos"
                   className="relative w-80 md:w-96 rounded-xl shadow-2xl"
                 />
-                {/* Price badge with pulse */}
-                <motion.div
-                  initial={{ scale: 0, rotate: -10 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{
-                    delay: 1,
-                    type: "spring",
-                    stiffness: 200,
-                    damping: 15,
-                  }}
-                  className="absolute -bottom-4 -right-4 bg-gradient-to-r from-gold to-gold-dark text-accent-foreground px-6 py-3 rounded-full font-bold text-lg shadow-lg"
-                >
-                  <motion.span
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    R$ 54,90
-                  </motion.span>
-                </motion.div>
+                {/* Price badge */}
+                <div className="absolute -bottom-4 -right-4 bg-gradient-to-r from-gold to-gold-dark text-accent-foreground px-6 py-3 rounded-full font-bold text-lg shadow-lg">
+                  R$ 54,90
+                </div>
               </div>
             </Tilt>
           </motion.div>

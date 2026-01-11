@@ -1,8 +1,11 @@
 import authorPhoto from "@/assets/author-photo.jpg";
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const AuthorSection = () => {
+  const isMobile = useIsMobile();
+
   return (
     <section className="py-20 bg-card relative overflow-hidden">
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-whatsapp/30 to-transparent" />
@@ -32,12 +35,12 @@ const AuthorSection = () => {
             className="relative flex justify-center lg:justify-end order-2 lg:order-1"
           >
             <Tilt
-              tiltMaxAngleX={10}
-              tiltMaxAngleY={10}
+              tiltMaxAngleX={isMobile ? 0 : 10}
+              tiltMaxAngleY={isMobile ? 0 : 10}
               perspective={1000}
-              scale={1.02}
+              scale={isMobile ? 1 : 1.02}
               transitionSpeed={2000}
-              glareEnable={true}
+              glareEnable={!isMobile}
               glareMaxOpacity={0.2}
               glareColor="#D4AF37"
               glarePosition="all"
