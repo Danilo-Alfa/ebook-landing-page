@@ -1,61 +1,169 @@
 import authorPhoto from "@/assets/author-photo.jpg";
+import { motion } from "framer-motion";
+import Tilt from "react-parallax-tilt";
 
 const AuthorSection = () => {
   return (
     <section className="py-20 bg-card relative overflow-hidden">
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-whatsapp/30 to-transparent" />
-      
-      <div className="container">
+
+      {/* Decorative elements */}
+      <motion.div
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.1, 0.2, 0.1],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-20 right-20 w-64 h-64 bg-gold rounded-full blur-3xl"
+      />
+
+      <div className="container relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Photo */}
-          <div className="relative flex justify-center lg:justify-end order-2 lg:order-1">
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-whatsapp/30 to-gold/30 rounded-full blur-2xl" />
-              <img
-                src={authorPhoto}
-                alt="Vera Dias"
-                className="relative w-72 h-72 md:w-80 md:h-80 object-cover rounded-full border-4 border-gold/30"
-              />
-              {/* Experience badge */}
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-gold to-gold-dark text-accent-foreground px-6 py-2 rounded-full font-semibold shadow-lg whitespace-nowrap">
-                +4 anos de experiência
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative flex justify-center lg:justify-end order-2 lg:order-1"
+          >
+            <Tilt
+              tiltMaxAngleX={10}
+              tiltMaxAngleY={10}
+              perspective={1000}
+              scale={1.02}
+              transitionSpeed={2000}
+              glareEnable={true}
+              glareMaxOpacity={0.2}
+              glareColor="#D4AF37"
+              glarePosition="all"
+              glareBorderRadius="50%"
+            >
+              <div className="relative">
+                {/* Animated glow */}
+                <motion.div
+                  animate={{
+                    opacity: [0.3, 0.5, 0.3],
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="absolute -inset-4 bg-gradient-to-r from-whatsapp/30 to-gold/30 rounded-full blur-2xl"
+                />
+                <img
+                  src={authorPhoto}
+                  alt="Vera Dias"
+                  className="relative w-72 h-72 md:w-80 md:h-80 object-cover rounded-full border-4 border-gold/30"
+                />
+                {/* Experience badge */}
+                <motion.div
+                  initial={{ scale: 0, y: 20 }}
+                  whileInView={{ scale: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    delay: 0.5,
+                    type: "spring",
+                    stiffness: 200,
+                    damping: 15,
+                  }}
+                  className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-gold to-gold-dark text-accent-foreground px-6 py-2 rounded-full font-semibold shadow-lg whitespace-nowrap"
+                >
+                  +18 anos de experiência
+                </motion.div>
               </div>
-            </div>
-          </div>
-          
+            </Tilt>
+          </motion.div>
+
           {/* Content */}
-          <div className="space-y-6 text-center lg:text-left order-1 lg:order-2">
-            <span className="text-gold text-sm font-semibold tracking-wider uppercase">
-              Sobre a Autora
-            </span>
-            <h2 className="text-3xl md:text-4xl font-display font-bold">
-              Conheça a <span className="text-gradient-gold">Vera Dias</span>
-            </h2>
-            <div className="space-y-4 text-muted-foreground">
-              <p>
-                [Texto sobre a trajetória da Vera Dias, como ela começou na área de 
-                design de sobrancelhas e sua experiência profissional]
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="space-y-6 text-center lg:text-left order-1 lg:order-2"
+          >
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="inline-block text-gold text-sm font-semibold tracking-wider uppercase"
+            >
+              Sua Mentora
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="text-3xl md:text-4xl font-display font-bold"
+            >
+              Quem Vai Te Guiar Nessa{" "}
+              <span className="text-gradient-gold">Transformação</span>
+            </motion.h2>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="space-y-4 text-muted-foreground"
+            >
+              <p className="text-foreground font-medium">
+                Vera Dias não é apenas uma profissional — ela é referência na Grande São Paulo,
+                com clientes que recusam qualquer outro atendimento há mais de uma década.
               </p>
               <p>
-                [Suas conquistas, número de alunas formadas, depoimentos de clientes 
-                e por que ela decidiu criar este ebook]
+                Com <strong className="text-foreground">18 anos de experiência prática</strong>,
+                formação em <strong className="text-foreground">Psicanálise</strong> e diversos
+                diplomas na área da beleza, Vera desenvolveu um método único que une técnica,
+                ética profissional e visão de negócio.
               </p>
               <p>
-                [Sua missão de ajudar outras mulheres a alcançarem independência 
-                financeira através do design de sobrancelhas]
+                Agora, ela decidiu compartilhar tudo o que sabe — o mesmo conhecimento que
+                construiu sua reputação impecável — para que você também possa conquistar
+                sua independência financeira e realizar o sonho de viver da profissão que ama.
               </p>
-            </div>
-            <div className="flex items-center gap-4 justify-center lg:justify-start">
+              <motion.p
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6 }}
+                className="text-foreground italic border-l-2 border-gold pl-4 bg-gold/5 py-3 rounded-r-lg"
+              >
+                "Eu sei como é começar com medo e incerteza. Por isso criei este guia: para
+                você não cometer os mesmos erros que eu cometi e chegar lá muito mais rápido."
+              </motion.p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.7 }}
+              className="flex items-center gap-4 justify-center lg:justify-start"
+            >
               <a
                 href="https://instagram.com/Vdhair_ofc"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-whatsapp hover:text-whatsapp-dark transition-colors"
+                className="inline-flex items-center gap-2 text-whatsapp hover:text-whatsapp-dark transition-colors font-medium group"
               >
-                @Vdhair_ofc
+                <span className="group-hover:underline">Siga @Vdhair_ofc no Instagram</span>
+                <motion.span
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                >
+                  →
+                </motion.span>
               </a>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

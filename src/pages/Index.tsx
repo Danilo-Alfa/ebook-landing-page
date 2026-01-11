@@ -6,10 +6,12 @@ import TestimonialsSection from "@/components/landing/TestimonialsSection";
 import GuaranteeSection from "@/components/landing/GuaranteeSection";
 import CtaSection from "@/components/landing/CtaSection";
 import Footer from "@/components/landing/Footer";
+import FloatingParticles from "@/components/ui/floating-particles";
 
 const Index = () => {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative">
+      <FloatingParticles />
       <HeroSection />
       <BenefitsSection />
       <ContentSection />
