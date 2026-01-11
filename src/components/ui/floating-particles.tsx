@@ -20,6 +20,9 @@ const FloatingParticles = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    // Detect mobile
+    const isMobile = window.innerWidth < 768;
+
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -29,7 +32,8 @@ const FloatingParticles = () => {
     window.addEventListener("resize", resizeCanvas);
 
     const particles: Particle[] = [];
-    const particleCount = 50;
+    // Reduce particles on mobile for better performance
+    const particleCount = isMobile ? 15 : 50;
     const colors = ["#D4AF37", "#25D366", "#FFD700", "#C0C0C0"];
 
     for (let i = 0; i < particleCount; i++) {
@@ -61,23 +65,25 @@ const FloatingParticles = () => {
         ctx.fill();
       });
 
-      // Draw connections
-      particles.forEach((a, i) => {
-        particles.slice(i + 1).forEach((b) => {
-          const dx = a.x - b.x;
-          const dy = a.y - b.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+      // Draw connections (skip on mobile for better performance)
+      if (!isMobile) {
+        particles.forEach((a, i) => {
+          particles.slice(i + 1).forEach((b) => {
+            const dx = a.x - b.x;
+            const dy = a.y - b.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 150) {
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = "#D4AF37";
-            ctx.globalAlpha = 0.1 * (1 - distance / 150);
-            ctx.stroke();
-          }
+            if (distance < 150) {
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.strokeStyle = "#D4AF37";
+              ctx.globalAlpha = 0.1 * (1 - distance / 150);
+              ctx.stroke();
+            }
+          });
         });
-      });
+      }
 
       requestAnimationFrame(animate);
     };

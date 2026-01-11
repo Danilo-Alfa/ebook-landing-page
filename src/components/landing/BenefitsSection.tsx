@@ -64,21 +64,23 @@ const BenefitsSection = () => {
 
   return (
     <section className="py-20 bg-card relative overflow-hidden">
-      {/* Animated background elements */}
-      <motion.div
-        animate={{
-          rotate: [0, 360],
-        }}
-        transition={{
-          duration: 60,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        className="absolute -top-1/2 -right-1/2 w-full h-full opacity-5"
-        style={{
-          background: "conic-gradient(from 0deg, transparent, #D4AF37, transparent, #25D366, transparent)",
-        }}
-      />
+      {/* Animated background elements - hidden on mobile for better performance */}
+      {!isMobile && (
+        <motion.div
+          animate={{
+            rotate: [0, 360],
+          }}
+          transition={{
+            duration: 60,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute -top-1/2 -right-1/2 w-full h-full opacity-5"
+          style={{
+            background: "conic-gradient(from 0deg, transparent, #D4AF37, transparent, #25D366, transparent)",
+          }}
+        />
+      )}
 
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
 

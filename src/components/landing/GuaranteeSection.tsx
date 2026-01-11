@@ -1,24 +1,29 @@
 import { Shield } from "lucide-react";
 import { motion } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const GuaranteeSection = () => {
+  const isMobile = useIsMobile();
+
   return (
     <section className="py-20 bg-card relative overflow-hidden">
-      {/* Decorative elements */}
-      <motion.div
-        animate={{
-          rotate: [0, 360],
-        }}
-        transition={{
-          duration: 30,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-5"
-        style={{
-          background: "conic-gradient(from 0deg, transparent, #25D366, transparent, #D4AF37, transparent)",
-        }}
-      />
+      {/* Decorative elements - hidden on mobile for better performance */}
+      {!isMobile && (
+        <motion.div
+          animate={{
+            rotate: [0, 360],
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-5"
+          style={{
+            background: "conic-gradient(from 0deg, transparent, #25D366, transparent, #D4AF37, transparent)",
+          }}
+        />
+      )}
 
       <div className="container relative z-10">
         <motion.div

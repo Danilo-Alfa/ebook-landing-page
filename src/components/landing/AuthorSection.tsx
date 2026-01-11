@@ -32,7 +32,7 @@ const AuthorSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative flex justify-center lg:justify-end order-2 lg:order-1"
+            className="relative flex justify-center lg:justify-end order-2 lg:order-1 pb-6"
           >
             <Tilt
               tiltMaxAngleX={isMobile ? 0 : 10}
