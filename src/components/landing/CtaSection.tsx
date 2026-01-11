@@ -20,32 +20,36 @@ const CtaSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-card to-background" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
 
-      {/* Animated background elements */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-20 left-20 w-72 h-72 bg-whatsapp rounded-full blur-3xl"
-      />
-      <motion.div
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2,
-        }}
-        className="absolute bottom-20 right-20 w-96 h-96 bg-gold rounded-full blur-3xl"
-      />
+      {/* Animated background elements - hidden on mobile for better performance */}
+      {!isMobile && (
+        <>
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.1, 0.2, 0.1],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute top-20 left-20 w-72 h-72 bg-whatsapp rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.1, 0.2, 0.1],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2,
+            }}
+            className="absolute bottom-20 right-20 w-96 h-96 bg-gold rounded-full blur-3xl"
+          />
+        </>
+      )}
 
       <div className="container relative z-10">
         <div className="max-w-4xl mx-auto">
@@ -71,18 +75,23 @@ const CtaSection = () => {
                 glareBorderRadius="12px"
               >
                 <div className="relative">
-                  <motion.div
-                    animate={{
-                      opacity: [0.3, 0.5, 0.3],
-                      scale: [1, 1.05, 1],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    className="absolute -inset-4 bg-gradient-to-r from-whatsapp/30 to-gold/30 rounded-2xl blur-2xl"
-                  />
+                  {/* Animated glow - static on mobile for performance */}
+                  {isMobile ? (
+                    <div className="absolute -inset-4 bg-gradient-to-r from-whatsapp/20 to-gold/20 rounded-2xl blur-xl" />
+                  ) : (
+                    <motion.div
+                      animate={{
+                        opacity: [0.3, 0.5, 0.3],
+                        scale: [1, 1.05, 1],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                      className="absolute -inset-4 bg-gradient-to-r from-whatsapp/30 to-gold/30 rounded-2xl blur-2xl"
+                    />
+                  )}
                   <img
                     src={ebookCover}
                     alt="E-book Guia Completo de Tratamentos Capilares e Estéticos"
@@ -101,7 +110,7 @@ const CtaSection = () => {
               className="text-center md:text-left space-y-6"
             >
               <motion.div
-                animate={{
+                animate={isMobile ? {} : {
                   scale: [1, 1.05, 1],
                 }}
                 transition={{
@@ -154,7 +163,7 @@ const CtaSection = () => {
 
               <div className="pt-4">
                 <motion.p
-                  animate={{
+                  animate={isMobile ? {} : {
                     scale: [1, 1.02, 1],
                   }}
                   transition={{
@@ -171,30 +180,26 @@ const CtaSection = () => {
                 </p>
 
                 <motion.div
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={isMobile ? {} : { scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <Button variant="cta" size="xl" className="w-full md:w-auto group relative overflow-hidden" asChild>
                     <a href="https://hotmart.com/pt-br/marketplace/produtos/hagsxd-design-de-sobrancelha-profissional-5f4p5/S101809237D" target="_blank" rel="noopener noreferrer">
                       <span className="relative z-10">Sim! Quero Começar Agora</span>
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-whatsapp-dark to-whatsapp"
-                        initial={{ x: "-100%" }}
-                        whileHover={{ x: 0 }}
-                        transition={{ duration: 0.3 }}
-                      />
+                      {!isMobile && (
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-whatsapp-dark to-whatsapp"
+                          initial={{ x: "-100%" }}
+                          whileHover={{ x: 0 }}
+                          transition={{ duration: 0.3 }}
+                        />
+                      )}
                     </a>
                   </Button>
                 </motion.div>
 
                 <p className="text-sm text-muted-foreground mt-4 flex items-center justify-center md:justify-start gap-2">
-                  <motion.span
-                    animate={{ rotate: [0, 10, -10, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="text-whatsapp"
-                  >
-                    🔒
-                  </motion.span>
+                  <span className="text-whatsapp">🔒</span>
                   Compra 100% segura via Hotmart
                 </p>
               </div>

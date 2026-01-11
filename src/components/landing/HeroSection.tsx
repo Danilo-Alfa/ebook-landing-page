@@ -9,33 +9,37 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center py-20 overflow-hidden">
-      {/* Animated background decorations */}
+      {/* Animated background decorations - simplified on mobile */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-card" />
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.05, 0.1, 0.05],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-20 left-10 w-72 h-72 bg-whatsapp rounded-full blur-3xl"
-      />
-      <motion.div
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.05, 0.15, 0.05],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1,
-        }}
-        className="absolute bottom-20 right-10 w-96 h-96 bg-gold rounded-full blur-3xl"
-      />
+      {!isMobile && (
+        <>
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.05, 0.1, 0.05],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute top-20 left-10 w-72 h-72 bg-whatsapp rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.05, 0.15, 0.05],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1,
+            }}
+            className="absolute bottom-20 right-10 w-96 h-96 bg-gold rounded-full blur-3xl"
+          />
+        </>
+      )}
 
       <div className="container relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -145,8 +149,8 @@ const HeroSection = () => {
               className="relative"
             >
               <div className="relative">
-                {/* Animated glow effect */}
-                <div className="absolute -inset-4 bg-gradient-to-r from-whatsapp/30 to-gold/30 rounded-2xl blur-2xl" />
+                {/* Glow effect - lighter on mobile */}
+                <div className={`absolute -inset-4 bg-gradient-to-r from-whatsapp/30 to-gold/30 rounded-2xl ${isMobile ? 'blur-xl' : 'blur-2xl'}`} />
                 <img
                   src={ebookCover}
                   alt="E-book Guia Completo de Tratamentos Capilares e Estéticos"

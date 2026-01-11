@@ -10,19 +10,21 @@ const AuthorSection = () => {
     <section className="py-20 bg-card relative overflow-hidden">
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-whatsapp/30 to-transparent" />
 
-      {/* Decorative elements */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-20 right-20 w-64 h-64 bg-gold rounded-full blur-3xl"
-      />
+      {/* Decorative elements - hidden on mobile for performance */}
+      {!isMobile && (
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.2, 0.1],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute top-20 right-20 w-64 h-64 bg-gold rounded-full blur-3xl"
+        />
+      )}
 
       <div className="container relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -32,7 +34,7 @@ const AuthorSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative flex justify-center lg:justify-end order-2 lg:order-1 pb-6"
+            className="relative flex justify-center lg:justify-end order-2 lg:order-1 pb-10"
           >
             <Tilt
               tiltMaxAngleX={isMobile ? 0 : 10}
@@ -47,19 +49,23 @@ const AuthorSection = () => {
               glareBorderRadius="50%"
             >
               <div className="relative">
-                {/* Animated glow */}
-                <motion.div
-                  animate={{
-                    opacity: [0.3, 0.5, 0.3],
-                    scale: [1, 1.05, 1],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute -inset-4 bg-gradient-to-r from-whatsapp/30 to-gold/30 rounded-full blur-2xl"
-                />
+                {/* Glow - static on mobile for performance */}
+                {isMobile ? (
+                  <div className="absolute -inset-4 bg-gradient-to-r from-whatsapp/20 to-gold/20 rounded-full blur-xl" />
+                ) : (
+                  <motion.div
+                    animate={{
+                      opacity: [0.3, 0.5, 0.3],
+                      scale: [1, 1.05, 1],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    className="absolute -inset-4 bg-gradient-to-r from-whatsapp/30 to-gold/30 rounded-full blur-2xl"
+                  />
+                )}
                 <img
                   src={authorPhoto}
                   alt="Vera Dias"

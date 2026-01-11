@@ -53,30 +53,35 @@ const TestimonialsSection = () => {
 
   return (
     <section className="py-20 relative overflow-hidden">
-      <motion.div
-        animate={{
-          x: [0, 30, 0],
-          opacity: [0.05, 0.1, 0.05],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-20 left-0 w-72 h-72 bg-gold rounded-full blur-3xl"
-      />
-      <motion.div
-        animate={{
-          x: [0, -20, 0],
-          opacity: [0.05, 0.1, 0.05],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute bottom-20 right-0 w-64 h-64 bg-whatsapp rounded-full blur-3xl"
-      />
+      {/* Background decorations - hidden on mobile for performance */}
+      {!isMobile && (
+        <>
+          <motion.div
+            animate={{
+              x: [0, 30, 0],
+              opacity: [0.05, 0.1, 0.05],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute top-20 left-0 w-72 h-72 bg-gold rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              x: [0, -20, 0],
+              opacity: [0.05, 0.1, 0.05],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute bottom-20 right-0 w-64 h-64 bg-whatsapp rounded-full blur-3xl"
+          />
+        </>
+      )}
 
       <div className="container relative z-10">
         <motion.div

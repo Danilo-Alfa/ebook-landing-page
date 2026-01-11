@@ -71,31 +71,35 @@ const ContentSection = () => {
 
   return (
     <section id="conteudo" className="py-20 relative overflow-hidden">
-      {/* Animated background */}
-      <motion.div
-        animate={{
-          x: [0, 30, 0],
-          y: [0, -20, 0],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-40 right-0 w-96 h-96 bg-whatsapp/10 rounded-full blur-3xl"
-      />
-      <motion.div
-        animate={{
-          x: [0, -20, 0],
-          y: [0, 30, 0],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute bottom-20 left-0 w-72 h-72 bg-gold/10 rounded-full blur-3xl"
-      />
+      {/* Animated background - hidden on mobile for performance */}
+      {!isMobile && (
+        <>
+          <motion.div
+            animate={{
+              x: [0, 30, 0],
+              y: [0, -20, 0],
+            }}
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute top-40 right-0 w-96 h-96 bg-whatsapp/10 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              x: [0, -20, 0],
+              y: [0, 30, 0],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute bottom-20 left-0 w-72 h-72 bg-gold/10 rounded-full blur-3xl"
+          />
+        </>
+      )}
 
       <div className="container relative z-10">
         <motion.div
