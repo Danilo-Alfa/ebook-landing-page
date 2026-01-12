@@ -111,7 +111,6 @@ const HeroSection = () => {
               {[
                 "Acesso imediato após a compra",
                 "Aula gravada exclusiva",
-                "Garantia incondicional de 7 dias",
               ].map((item, index) => (
                 <motion.div
                   key={index}
