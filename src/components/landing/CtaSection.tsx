@@ -54,7 +54,7 @@ const CtaSection = () => {
       <div className="container relative z-10">
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Ebook with 3D effect */}
+            {/* Ebook with 3D effect (only on desktop) */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -62,23 +62,29 @@ const CtaSection = () => {
               transition={{ duration: 0.8 }}
               className="flex justify-center"
             >
-              <Tilt
-                tiltMaxAngleX={isMobile ? 0 : 15}
-                tiltMaxAngleY={isMobile ? 0 : 15}
-                perspective={1000}
-                scale={isMobile ? 1 : 1.05}
-                transitionSpeed={2000}
-                glareEnable={!isMobile}
-                glareMaxOpacity={0.3}
-                glareColor="#D4AF37"
-                glarePosition="all"
-                glareBorderRadius="12px"
-              >
+              {isMobile ? (
                 <div className="relative">
-                  {/* Animated glow - static on mobile for performance */}
-                  {isMobile ? (
-                    <div className="absolute -inset-4 bg-gradient-to-r from-whatsapp/20 to-gold/20 rounded-2xl blur-xl" />
-                  ) : (
+                  <div className="absolute -inset-4 bg-gradient-to-r from-whatsapp/20 to-gold/20 rounded-2xl blur-xl" />
+                  <img
+                    src={ebookCover}
+                    alt="E-book Guia Completo de Tratamentos Capilares e Estéticos"
+                    className="relative w-64 rounded-xl shadow-2xl"
+                  />
+                </div>
+              ) : (
+                <Tilt
+                  tiltMaxAngleX={15}
+                  tiltMaxAngleY={15}
+                  perspective={1000}
+                  scale={1.05}
+                  transitionSpeed={2000}
+                  glareEnable={true}
+                  glareMaxOpacity={0.3}
+                  glareColor="#D4AF37"
+                  glarePosition="all"
+                  glareBorderRadius="12px"
+                >
+                  <div className="relative">
                     <motion.div
                       animate={{
                         opacity: [0.3, 0.5, 0.3],
@@ -91,14 +97,14 @@ const CtaSection = () => {
                       }}
                       className="absolute -inset-4 bg-gradient-to-r from-whatsapp/30 to-gold/30 rounded-2xl blur-2xl"
                     />
-                  )}
-                  <img
-                    src={ebookCover}
-                    alt="E-book Guia Completo de Tratamentos Capilares e Estéticos"
-                    className="relative w-64 rounded-xl shadow-2xl"
-                  />
-                </div>
-              </Tilt>
+                    <img
+                      src={ebookCover}
+                      alt="E-book Guia Completo de Tratamentos Capilares e Estéticos"
+                      className="relative w-64 rounded-xl shadow-2xl"
+                    />
+                  </div>
+                </Tilt>
+              )}
             </motion.div>
 
             {/* CTA Content */}
@@ -184,7 +190,7 @@ const CtaSection = () => {
                   whileTap={{ scale: 0.98 }}
                 >
                   <Button variant="cta" size="xl" className="w-full md:w-auto group relative overflow-hidden" asChild>
-                    <a href="https://hotmart.com/pt-br/marketplace/produtos/hagsxd-design-de-sobrancelha-profissional-5f4p5/S101809237D" target="_blank" rel="noopener noreferrer">
+                    <a href="https://pay.hotmart.com/S101809237D" target="_blank" rel="noopener noreferrer">
                       <span className="relative z-10">Sim! Quero Começar Agora</span>
                       {!isMobile && (
                         <motion.div

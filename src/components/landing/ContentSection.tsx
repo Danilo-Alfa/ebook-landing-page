@@ -142,7 +142,7 @@ const ContentSection = () => {
                 <SpotlightCard className="h-full rounded-2xl" spotlightColor="rgba(37, 211, 102, 0.35)" disabled={isMobile}>
                   <div className="group h-full p-6 rounded-2xl bg-card/80 backdrop-blur-sm border border-border/50 hover:border-whatsapp/50 transition-all duration-500 hover:shadow-xl hover:shadow-whatsapp/10 relative overflow-hidden">
                     {/* Number decoration */}
-                    <div className={`absolute -top-4 text-8xl font-bold text-whatsapp/5 select-none ${index === 0 ? '-right-2' : '-right-4'}`}>
+                    <div className={`absolute -top-4 text-8xl font-bold text-whatsapp/5 select-none ${index === 0 ? '-  right-2' : '-right-4'}`}>
                       {index + 1}
                     </div>
 

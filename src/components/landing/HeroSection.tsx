@@ -90,7 +90,7 @@ const HeroSection = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
               <Button variant="cta" size="xl" asChild className="group relative overflow-hidden px-4">
-                <a href="https://hotmart.com/pt-br/marketplace/produtos/hagsxd-design-de-sobrancelha-profissional-5f4p5/S101809237D" target="_blank" rel="noopener noreferrer">
+                <a href="https://pay.hotmart.com/S101809237D" target="_blank" rel="noopener noreferrer">
                   <span className="relative z-10 px-1">Quero Transformar Minha Carreira</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-whatsapp-dark to-whatsapp opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </a>
@@ -127,41 +127,53 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* Ebook mockup with 3D Tilt (disabled on mobile) */}
+          {/* Ebook mockup with 3D Tilt (only on desktop) */}
           <motion.div
             initial={{ opacity: 0, x: isMobile ? 0 : 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
             className="relative flex justify-center pb-6"
           >
-            <Tilt
-              tiltMaxAngleX={isMobile ? 0 : 15}
-              tiltMaxAngleY={isMobile ? 0 : 15}
-              perspective={1000}
-              scale={isMobile ? 1 : 1.02}
-              transitionSpeed={2000}
-              gyroscope={false}
-              glareEnable={!isMobile}
-              glareMaxOpacity={0.3}
-              glareColor="#D4AF37"
-              glarePosition="all"
-              glareBorderRadius="12px"
-              className="relative"
-            >
+            {isMobile ? (
               <div className="relative">
-                {/* Glow effect - lighter on mobile */}
-                <div className={`absolute -inset-4 bg-gradient-to-r from-whatsapp/30 to-gold/30 rounded-2xl ${isMobile ? 'blur-xl' : 'blur-2xl'}`} />
+                <div className="absolute -inset-4 bg-gradient-to-r from-whatsapp/30 to-gold/30 rounded-2xl blur-xl" />
                 <img
                   src={ebookCover}
                   alt="E-book Guia Completo de Tratamentos Capilares e Estéticos"
                   className="relative w-80 md:w-96 rounded-xl shadow-2xl"
                 />
-                {/* Price badge */}
                 <div className="absolute -top-4 -right-4 bg-gradient-to-r from-gold to-gold-dark text-accent-foreground px-6 py-3 rounded-full font-bold text-lg shadow-lg">
                   R$ 54,90
                 </div>
               </div>
-            </Tilt>
+            ) : (
+              <Tilt
+                tiltMaxAngleX={15}
+                tiltMaxAngleY={15}
+                perspective={1000}
+                scale={1.02}
+                transitionSpeed={2000}
+                gyroscope={false}
+                glareEnable={true}
+                glareMaxOpacity={0.3}
+                glareColor="#D4AF37"
+                glarePosition="all"
+                glareBorderRadius="12px"
+                className="relative"
+              >
+                <div className="relative">
+                  <div className="absolute -inset-4 bg-gradient-to-r from-whatsapp/30 to-gold/30 rounded-2xl blur-2xl" />
+                  <img
+                    src={ebookCover}
+                    alt="E-book Guia Completo de Tratamentos Capilares e Estéticos"
+                    className="relative w-80 md:w-96 rounded-xl shadow-2xl"
+                  />
+                  <div className="absolute -top-4 -right-4 bg-gradient-to-r from-gold to-gold-dark text-accent-foreground px-6 py-3 rounded-full font-bold text-lg shadow-lg">
+                    R$ 54,90
+                  </div>
+                </div>
+              </Tilt>
+            )}
           </motion.div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import authorPhoto from "@/assets/author-photo.jpg";
 import { motion } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
+import Tilt from "react-parallax-tilt";
 
 const AuthorSection = () => {
   const isMobile = useIsMobile();
@@ -36,28 +37,49 @@ const AuthorSection = () => {
             className="relative flex justify-center lg:justify-end order-2 lg:order-1 pb-12 lg:pb-0"
           >
             <div className="relative flex flex-col items-center">
-              {/* Glow - static on mobile for performance */}
               {isMobile ? (
-                <div className="absolute -inset-4 bg-gradient-to-r from-whatsapp/20 to-gold/20 rounded-2xl blur-xl" />
+                <>
+                  <div className="absolute -inset-4 bg-gradient-to-r from-whatsapp/20 to-gold/20 rounded-2xl blur-xl" />
+                  <img
+                    src={authorPhoto}
+                    alt="Vera Dias"
+                    className="relative max-w-64 md:max-w-72 rounded-2xl border-4 border-gold/30 shadow-xl"
+                  />
+                </>
               ) : (
-                <motion.div
-                  animate={{
-                    opacity: [0.3, 0.5, 0.3],
-                    scale: [1, 1.05, 1],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute -inset-4 bg-gradient-to-r from-whatsapp/30 to-gold/30 rounded-2xl blur-2xl"
-                />
+                <Tilt
+                  tiltMaxAngleX={10}
+                  tiltMaxAngleY={10}
+                  perspective={1000}
+                  scale={1.02}
+                  transitionSpeed={2000}
+                  glareEnable={true}
+                  glareMaxOpacity={0.2}
+                  glareColor="#D4AF37"
+                  glarePosition="all"
+                  glareBorderRadius="16px"
+                >
+                  <div className="relative">
+                    <motion.div
+                      animate={{
+                        opacity: [0.3, 0.5, 0.3],
+                        scale: [1, 1.05, 1],
+                      }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                      className="absolute -inset-4 bg-gradient-to-r from-whatsapp/30 to-gold/30 rounded-2xl blur-2xl"
+                    />
+                    <img
+                      src={authorPhoto}
+                      alt="Vera Dias"
+                      className="relative max-w-80 rounded-2xl border-4 border-gold/30 shadow-xl"
+                    />
+                  </div>
+                </Tilt>
               )}
-              <img
-                src={authorPhoto}
-                alt="Vera Dias"
-                className="relative max-w-64 md:max-w-72 lg:max-w-80 rounded-2xl border-4 border-gold/30 shadow-xl"
-              />
               {/* Experience badge - positioned below photo */}
               <motion.div
                 initial={{ scale: 0, y: 20 }}
