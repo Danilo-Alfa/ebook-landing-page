@@ -157,7 +157,7 @@ const HeroSection = () => {
                   className="relative w-80 md:w-96 rounded-xl shadow-2xl"
                 />
                 {/* Price badge */}
-                <div className="absolute -bottom-4 -right-4 bg-gradient-to-r from-gold to-gold-dark text-accent-foreground px-6 py-3 rounded-full font-bold text-lg shadow-lg">
+                <div className="absolute -top-4 -right-4 bg-gradient-to-r from-gold to-gold-dark text-accent-foreground px-6 py-3 rounded-full font-bold text-lg shadow-lg">
                   R$ 54,90
                 </div>
               </div>

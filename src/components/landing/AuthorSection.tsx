@@ -26,19 +26,19 @@ const AuthorSection = () => {
       )}
 
       <div className="container relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center lg:items-start">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-10 items-center">
           {/* Photo */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative flex justify-center lg:justify-end order-2 lg:order-1 pb-12 lg:pb-4"
+            className="relative flex justify-center lg:justify-end order-2 lg:order-1 pb-12 lg:pb-0"
           >
-            <div className="relative lg:flex lg:flex-col lg:items-center">
+            <div className="relative flex flex-col items-center">
               {/* Glow - static on mobile for performance */}
               {isMobile ? (
-                <div className="absolute -inset-4 bg-gradient-to-r from-whatsapp/20 to-gold/20 rounded-full blur-xl" />
+                <div className="absolute -inset-4 bg-gradient-to-r from-whatsapp/20 to-gold/20 rounded-2xl blur-xl" />
               ) : (
                 <motion.div
                   animate={{
@@ -50,13 +50,13 @@ const AuthorSection = () => {
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="absolute -inset-4 bg-gradient-to-r from-whatsapp/30 to-gold/30 rounded-full blur-2xl"
+                  className="absolute -inset-4 bg-gradient-to-r from-whatsapp/30 to-gold/30 rounded-2xl blur-2xl"
                 />
               )}
               <img
                 src={authorPhoto}
                 alt="Vera Dias"
-                className="relative w-72 h-72 md:w-80 md:h-80 object-cover rounded-full border-4 border-gold/30"
+                className="relative max-w-64 md:max-w-72 lg:max-w-80 rounded-2xl border-4 border-gold/30 shadow-xl"
               />
               {/* Experience badge - positioned below photo */}
               <motion.div
@@ -69,7 +69,7 @@ const AuthorSection = () => {
                   stiffness: 200,
                   damping: 15,
                 }}
-                className="absolute -bottom-6 left-1/2 -translate-x-1/2 lg:relative lg:bottom-auto lg:left-auto lg:translate-x-0 lg:mt-8 bg-gradient-to-r from-gold to-gold-dark text-accent-foreground px-4 md:px-6 py-2 rounded-full font-semibold shadow-lg whitespace-nowrap text-sm md:text-base"
+                className="mt-4 bg-gradient-to-r from-gold to-gold-dark text-accent-foreground px-4 md:px-6 py-2 rounded-full font-semibold shadow-lg whitespace-nowrap text-sm md:text-base"
               >
                 +18 anos de experiência
               </motion.div>
@@ -130,7 +130,7 @@ const AuthorSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.6 }}
-                className="text-foreground italic border-l-2 border-gold pl-4 bg-gold/5 py-3 rounded-r-lg"
+                className="text-foreground italic border-l-2 border-gold pl-4 bg-gold/5 py-3 rounded-r-lg mr-5"
               >
                 "Eu sei como é começar com medo e incerteza. Por isso criei este guia: para
                 você não cometer os mesmos erros que eu cometi e chegar lá muito mais rápido."
